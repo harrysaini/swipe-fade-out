@@ -3,14 +3,14 @@ A simple js library to swipe out html elements in mobile browers.
 
 #### How to use
 ```javascript
-var swiper = new SwipeFadeOut('#loyalty-notification-div',options);
+var swiper = new SwipeFadeOut('#element-div',options);
 swiper.initListeners();
 ```
 
 or
 
 ```javascript
-var swiper = new SwipeFadeOut(document.getElementById('loyalty-notification-div'),options);
+var swiper = new SwipeFadeOut(document.getElementById('element-div'),options);
 swiper.initListeners();
 ```
 #### Options
