@@ -1,12 +1,17 @@
 
 function SwipeFadeOut(element,options){
   var options = options || {};
+  this.internals ={};
   if(typeof element==="string"){
     this.element = document.querySelector(element);
   }else{
     this.element = element;
   }  
 
+  this.internals.animationTime = options.animationTime || 0.4 ;
+  this.animationTimeString = options.animationTime ? options.animationTime+'s' : '0.4s' ;
+  this.afterSwipeOut = options.afterSwipeOut ;
+  this.opacityFadeScale = options.opacityFadeScale || 1.5 ; 
   this.parentDiv = options.parentDiv || window ;
   this.fadeOutThreshold = options.fadeOutThreshold || 40 ;
 }
@@ -46,7 +51,7 @@ SwipeFadeOut.prototype.touchMoveListner = function(e){
     this.element.style.transform = "translateX("+(-percentageChange)+"%)";
   }
 
-  this.element.style.opacity = ((100-1.4*percentageChange)/100);
+  this.element.style.opacity = ((100-(this.opacityFadeScale*percentageChange))/100);
 
 }
 
@@ -60,22 +65,33 @@ SwipeFadeOut.prototype.touchEndListner = function(e){
       endX = touchObj.clientX,
       diffX = Math.abs(this.startX - endX),
       direction = ((this.startX-endX)>0)?"Left":"Right",
-      percentageChange = (diffX/this.parentDiv.innerWidth)*100;
+      percentageChange = (diffX/this.parentDiv.innerWidth)*100,
+      self=this;
+  
   console.log(percentageChange,direction);
   
   if(percentageChange>this.fadeOutThreshold){
     
-    this.element.style.transition = "all 0.4s"
+    this.element.style.transition = "all "+this.animationTimeString;
     if(direction==="Right"){
       this.element.style.transform = "translateX(100%)";  
     }else{
       this.element.style.transform = "translateX(-100%)";  
     }
     this.element.style.opacity = 0;
-   // this.element.style.display= "none";
+    
+    setTimeout(function(){
+
+      self.element.style.display="none";
+      if(self.afterSwipeOut){
+        self.afterSwipeOut(self.element);
+      }
+
+    },this.internals.animationTime);
+
   }else{
     console.log("reset");
-    this.element.style.transition = "all 0.4s"
+    this.element.style.transition = "all "+this.animationTimeString;
     this.element.style.transform = "translateX(0%)";
     this.element.style.opacity = 1;
   }
