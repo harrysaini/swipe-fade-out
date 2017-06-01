@@ -66,7 +66,8 @@ SwipeFadeOut.prototype.touchEndListner = function(e){
       diffX = Math.abs(this.startX - endX),
       direction = ((this.startX-endX)>0)?"Left":"Right",
       percentageChange = (diffX/this.parentDiv.innerWidth)*100,
-      self=this;
+      self=this,
+      handlTransitionEnd;
   
   console.log(percentageChange,direction);
   
@@ -80,12 +81,14 @@ SwipeFadeOut.prototype.touchEndListner = function(e){
     }
     this.element.style.opacity = 0;
     
-    this.element.addEventListener('transitionend',function(){
+    handlTransitionEnd = function(e){
       self.element.style.display="none";
       if(self.afterSwipeOut){
         self.afterSwipeOut(self.element);
-      }
-    });
+      };
+      self.element.removeEventListener('transitionend', handlTransitionEnd, false);
+    }
+    this.element.addEventListener('transitionend',handlTransitionEnd,false);
 
   }else{
     console.log("reset");
