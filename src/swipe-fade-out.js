@@ -8,12 +8,12 @@ function SwipeFadeOut(element,options){
     this.element = element;
   }  
 
-  this.internals.animationTime = options.animationTime || 0.4 ;
-  this.animationTimeString = options.animationTime ? options.animationTime+'s' : '0.4s' ;
+  this.internals.animationTime = options.animationTime || 500 ;
+  this.animationTimeString = options.animationTime ? options.animationTime+'ms' : '500ms' ;
   this.afterSwipeOut = options.afterSwipeOut ;
   this.opacityFadeScale = options.opacityFadeScale || 1.5 ; 
   this.parentDiv = options.parentDiv || window ;
-  this.fadeOutThreshold = options.fadeOutThreshold || 40 ;
+  this.fadeOutThreshold = options.fadeOutThreshold || 50 ;
 }
   
 
@@ -72,7 +72,7 @@ SwipeFadeOut.prototype.touchEndListner = function(e){
   
   if(percentageChange>this.fadeOutThreshold){
     
-    this.element.style.transition = "all "+this.animationTimeString;
+    this.element.style.transition = "transform "+this.animationTimeString+" , opacity "+this.animationTimeString;
     if(direction==="Right"){
       this.element.style.transform = "translateX(100%)";  
     }else{
@@ -80,18 +80,16 @@ SwipeFadeOut.prototype.touchEndListner = function(e){
     }
     this.element.style.opacity = 0;
     
-    setTimeout(function(){
-
+    this.element.addEventListener('transitionend',function(){
       self.element.style.display="none";
       if(self.afterSwipeOut){
         self.afterSwipeOut(self.element);
       }
-
-    },this.internals.animationTime);
+    });
 
   }else{
     console.log("reset");
-    this.element.style.transition = "all "+this.animationTimeString;
+    this.element.style.transition = "transform "+this.animationTimeString+" , opacity "+this.animationTimeString;
     this.element.style.transform = "translateX(0%)";
     this.element.style.opacity = 1;
   }
