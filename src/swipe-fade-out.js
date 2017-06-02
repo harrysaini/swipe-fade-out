@@ -1,5 +1,5 @@
 (function(root,factory){
-  
+
   if(typeof define === "function" && define.amd) {
     define([], factory);
   } else {
@@ -24,12 +24,12 @@
     this.parentDiv = options.parentDiv || window ;
     this.fadeOutThreshold = options.fadeOutThreshold || 50 ;
   };
-    
+
 
 
   /*-------------------------------------------------------------------------------------------.//
    -----------------------------EVENT LISTNERS--------------------------------------------------//
-  -----------------------------------------------------------------------------------------------*/
+   -----------------------------------------------------------------------------------------------*/
 
   /*
   *touch start listener
@@ -48,10 +48,10 @@
     e.preventDefault();
 
     var touchObj = e.changedTouches[0],
-        newX = touchObj.clientX,
-        diffX = Math.abs(this.startX - newX),
-        direction = ((this.startX-newX)>0)?"Left":"Right",
-        percentageChange = (diffX/this.parentDiv.innerWidth)*100;
+    newX = touchObj.clientX,
+    diffX = Math.abs(this.startX - newX),
+    direction = ((this.startX-newX)>0)?"Left":"Right",
+    percentageChange = (diffX/this.parentDiv.innerWidth)*100;
     
     //changing style
     if(direction==="Right"){
@@ -71,17 +71,16 @@
   SwipeFadeOut.prototype.touchEndListner = function(e){
     console.log(e);
     var touchObj = e.changedTouches[0],
-        endX = touchObj.clientX,
-        diffX = Math.abs(this.startX - endX),
-        direction = ((this.startX-endX)>0)?"Left":"Right",
-        percentageChange = (diffX/this.parentDiv.innerWidth)*100,
-        self=this,
-        handlTransitionEnd;
+    endX = touchObj.clientX,
+    diffX = Math.abs(this.startX - endX),
+    direction = ((this.startX-endX)>0)?"Left":"Right",
+    percentageChange = (diffX/this.parentDiv.innerWidth)*100,
+    self=this,
+    handlTransitionEnd;
     
-    console.log(percentageChange,direction);
     
     if(percentageChange>this.fadeOutThreshold){
-      
+
       this.element.style.transition = "transform "+this.animationTimeString+" , opacity "+this.animationTimeString;
       if(direction==="Right"){
         this.element.style.transform = "translateX(100%)";  
@@ -100,8 +99,8 @@
       }
       this.element.addEventListener('transitionend',handlTransitionEnd,false);
 
-    }else{
-      console.log("reset");
+    }
+    else{
       this.element.style.transition = "transform "+this.animationTimeString+" , opacity "+this.animationTimeString;
       this.element.style.transform = "translateX(0%)";
       this.element.style.opacity = 1;
@@ -132,5 +131,6 @@
     this.element.style.opacity = 1;
   };
 
+  return SwipeFadeOut;
 })
 
