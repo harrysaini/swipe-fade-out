@@ -1,5 +1,6 @@
-(function(root,factory){
 
+(function(root,factory){
+  'use strict';
   if(typeof define === "function" && define.amd) {
     define([], factory);
   } else {
@@ -7,9 +8,10 @@
   }
 
 })(this,function(){
+  'use strict';
 
   function SwipeFadeOut(element,options){
-    var options = options || {};
+    options = options || {};
     this.internals ={};
     if(typeof element==="string"){
       this.element = document.querySelector(element);
@@ -23,7 +25,7 @@
     this.opacityFadeScale = options.opacityFadeScale || 1.5 ; 
     this.parentDiv = options.parentDiv || window ;
     this.fadeOutThreshold = options.fadeOutThreshold || 50 ;
-  };
+  }
 
 
 
@@ -55,12 +57,12 @@
     
     //changing style
     if(direction==="Right"){
-      this.element.style.transform = "translateX("+(percentageChange)+"%)";
+      this.setAllVendorCSS(this.element , 'transform' , "translateX("+(percentageChange)+"%)");
     }else{
-      this.element.style.transform = "translateX("+(-percentageChange)+"%)";
+      this.setAllVendorCSS(this.element , 'transform'  ,"translateX("+(-percentageChange)+"%)");
     }
 
-    this.element.style.opacity = ((100-(this.opacityFadeScale*percentageChange))/100);
+    this.setAllVendorCSS(this.element ,'opacity' , ((100-(this.opacityFadeScale*percentageChange))/100));
 
   };
 
@@ -69,7 +71,6 @@
   *Touch end listener
   */
   SwipeFadeOut.prototype.touchEndListner = function(e){
-    console.log(e);
     var touchObj = e.changedTouches[0],
     endX = touchObj.clientX,
     diffX = Math.abs(this.startX - endX),
@@ -81,29 +82,30 @@
     
     if(percentageChange>this.fadeOutThreshold){
 
-      this.element.style.transition = "transform "+this.animationTimeString+" , opacity "+this.animationTimeString;
+      this.setAllVendorCSS(this.element ,'transition' , "transform "+this.animationTimeString+" , opacity "+this.animationTimeString);
       if(direction==="Right"){
-        this.element.style.transform = "translateX(100%)";  
+        this.setAllVendorCSS(this.element, 'transform'  ,"translateX(100%)");  
       }else{
-        this.element.style.transform = "translateX(-100%)";  
+        this.setAllVendorCSS(this.element, 'transform' , "translateX(-100%)");  
       }
-      this.element.style.opacity = 0;
+      this.setAllVendorCSS(this.element,'opacity' , 0);
       
       handlTransitionEnd = function(e){
-        self.element.style.display="none";
-        self.element.style.transition = "";
+
+        self.setAllVendorCSS(self.element , 'display' , 'none');
+        self.setAllVendorCSS(self.element , 'transition' , '');
         if(self.afterSwipeOut){
           self.afterSwipeOut(self.element);
-        };
+        }
         self.element.removeEventListener('transitionend', handlTransitionEnd, false);
-      }
+      };
       this.element.addEventListener('transitionend',handlTransitionEnd,false);
 
     }
     else{
-      this.element.style.transition = "transform "+this.animationTimeString+" , opacity "+this.animationTimeString;
-      this.element.style.transform = "translateX(0%)";
-      this.element.style.opacity = 1;
+      this.setAllVendorCSS(this.element, 'transition' ,"transform "+this.animationTimeString+" , opacity "+this.animationTimeString );
+      this.setAllVendorCSS(this.element , 'transform' , 'translateX(0%)');
+      this.setAllVendorCSS(this.element, 'opacity' , 1);
     }
   };
 
@@ -126,11 +128,31 @@
   *Function to reset css propertied
   */
   SwipeFadeOut.prototype.resetCSSProperties = function(){
-    this.element.style.transition = "";
-    this.element.style.transform = "translateX(0%)";
-    this.element.style.opacity = 1;
+    this.setAllVendorCSS(this.element , 'transition' , '');
+    this.setAllVendorCSS(this.element , 'transform' , "translateX(0%)");
+    this.setAllVendorCSS(this.element , 'opacity' , 1);
+  };
+
+
+  /*
+  *Function to set vendor specific css
+  */
+  SwipeFadeOut.prototype.setAllVendorCSS = function(element , property , value){
+      element.style[property] = value;
+      property = this.firstLetterCapital(property);
+      element.style["webkit" + property] = value;
+      element.style["moz" + property] = value;
+      element.style["ms" + property] = value;
+      element.style["o" + property] = value;
+  };
+
+  /*
+  *FUnction to make first word capital
+  */
+  SwipeFadeOut.prototype.firstLetterCapital = function(word){
+      return (word[0].toUpperCase() + word.substring());
   };
 
   return SwipeFadeOut;
-})
+});
 
