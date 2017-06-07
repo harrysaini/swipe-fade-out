@@ -20,7 +20,7 @@ swiper.initListeners();
   fadeOutThreshold : "percentage of swipe moved to fadeout div , DEFAULT = 50%",
   parentDiv : "element corresponding to which fadeOutThreshold is calculated DEFAULT = window",
   animationTime:"all fading and transitions animation time , DEFAULT = 500ms",
-  opacityFadeScale:"How fast div fades away" , VALUE=(0 to 3) , DEFAULT = 1.5 times percentage change,
+  opacityFadeScale:"How fast div fades away , VALUE=(0 to 3) , DEFAULT = 1.5 times percentage change in position",
   
   //callbacks
   afterSwipeOut:function(element){
