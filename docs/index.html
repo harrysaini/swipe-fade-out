@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Swipe Fade Out</title>
+	<link rel="stylesheet" href="./styles/style.css">
+	<link rel="stylesheet" href="./styles/mdcss.css">
+	<link rel="stylesheet" href="./materialize/css/materialize.min.css">
+	<link rel="stylesheet" href="./font-awesome/css/font-awesome.min.css">
+</head>
+<body>
+	<div class="content">
+
+		<!-- navbar -->
+		<div class="navbar-fixed" id="navbar">
+			<nav class="white shadow-3">
+				<div class="nav-wrapper">
+					<a href="#!" class="brand-logo center blue-text text-lighten-1">swipe-fade-out</a>
+					<ul class="right hide-on-small-only">
+						<li class="brown-text text-lighten-4">
+							<a href="sass.html"><i class="fa fa-magic" aria-hidden="true"></i> Demo</a>
+						</li>
+						<li class="brown-text text-lighten-4">
+							<a href="https://github.com/harrysaini/swipe-fade-out"><i class="fa fa-github" aria-hidden="true"></i> Github</a>
+						</li>
+					</ul>
+				</div>
+			</nav>	
+		</div>
+		
+		<!-- heading -->
+		<div class="heading-div center">
+			<h3>swipe-fade-out</h3>
+			<h5>A simple js library to swipe fade out html elements</h5>
+			<br><br>
+
+			<div class="btns">
+				<a class="my-btns" href="https://github.com/harrysaini/swipe-fade-out">View on Github</a>
+				<a class="my-btns">Demo</a>
+			</div>
+		</div>
+
+		<!-- content -->
+		<div class="md-content container">
+			<h3><a id="swipefadeout_0"></a>swipe-fade-out</h3>
+			<p>A simple js library to swipe out html elements in mobile browers.</p>
+			<h4><a id="How_to_use_3"></a>How to use</h4>
+			<pre><code class="language-javascript"><span class="hljs-keyword">var</span> swiper = <span class="hljs-keyword">new</span> SwipeFadeOut(<span class="hljs-string">'#element-div'</span>,options);
+				swiper.initListeners();
+			</code></pre>
+			<p>or</p>
+			<pre><code class="language-javascript"><span class="hljs-keyword">var</span> swiper = <span class="hljs-keyword">new</span> SwipeFadeOut(<span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'element-div'</span>),options);
+				swiper.initListeners();
+			</code></pre>
+			<h4><a id="Options_15"></a>Options</h4>
+			<pre><code class="language-javascript">  {
+
+				fadeOutThreshold : <span class="hljs-string">"percentage of swipe moved to fadeout div , DEFAULT = 50%"</span>,
+				parentDiv : <span class="hljs-string">"element corresponding to which fadeOutThreshold is calculated DEFAULT = window"</span>,
+				animationTime:<span class="hljs-string">"all fading and transitions animation time , DEFAULT = 500ms"</span>,
+				opacityFadeScale:<span class="hljs-string">"How fast div fades away , VALUE=(0 to 3) , DEFAULT = 1.5 times percentage change in position"</span>,
+
+				<span class="hljs-comment">//callbacks</span>
+				afterSwipeOut:<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">element</span>)</span>{
+				<span class="hljs-comment">//handle after div swipe outes</span>
+			}
+
+		}
+	</code></pre>
+	<p>Still working on it !!!.</p>
+	<p>Please feel free to improve .</p>
+
+</div>
+
+<!-- footer -->
+<footer class="grey darken-4">
+	<div class="my-footer-content center ">
+
+		made with <i class="fa fa-heart" aria-hidden="true"></i> for <i class="fa fa-github" aria-hidden="true"></i> &amp; <i class="fa fa-free-code-camp" aria-hidden="true"></i>
+
+	</div>
+	<div class="footer-copyright center ">
+		© 2017 Harish
+	</div>
+</footer>
+
+</div>
+
+<!-- adding scripts -->
+<script src="./scripts/jquery-3.2.1.min.js" type="text/javascript" ></script>
+<script src="./materialize/js/materialize.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="./scripts/app.js" type="text/javascript" charset="utf-8" ></script>
+
+</body>
+</html>

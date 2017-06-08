@@ -1,0 +1,64 @@
+nav ul a{
+	color: #bcaaa4 !important;
+	transition: color 0.2s !important;
+}
+
+nav ul a:hover {
+	color: #a1887f !important;
+	background-color: transparent !important; 
+}
+
+.my-footer-content{
+	padding: 10px;
+	color: #e1f5fe ;
+	font-size: 110%;
+	word-spacing: 4px;
+}
+
+.my-footer-content i{
+	font-size: 120%;
+}
+
+.md-content{
+	min-height: 1000px;
+}
+
+.footer-copyright{
+	color: #e0e0e0;
+	font-size: 80%;
+	background:black;
+	padding: 5px;
+}
+.heading-div{
+	padding: 25px 10px 25px 10px;
+	color: #fff;
+    text-align: center;
+    background-color: #159957;
+    background-image: linear-gradient(120deg, #155799, #159957);
+}
+
+
+.shown{
+	opacity: 1;
+}
+.not-shown{
+	opacity: 0;
+	visibility: hidden;
+	display: none;
+}
+#navbar{
+	transition: opacity 0.7s;
+	position: fixed;
+	top:0;
+}
+
+
+
+
+.my-btns { display: inline-block; margin-bottom: 1rem; color: rgba(255, 255, 255, 0.7); background-color: rgba(255, 255, 255, 0.08); border-color: rgba(255, 255, 255, 0.2); border-style: solid; border-width: 1px; border-radius: 0.3rem; transition: color 0.2s, background-color 0.2s, border-color 0.2s; }
+.my-btns:hover { color: rgba(255, 255, 255, 0.8); text-decoration: none; background-color: rgba(255, 255, 255, 0.2); border-color: rgba(255, 255, 255, 0.3); }
+.my-btns + .my-btns { margin-left: 1rem; }
+@media screen and (min-width: 64em) { .my-btns { padding: 0.75rem 1rem; } }
+@media screen and (min-width: 42em) and (max-width: 64em) { .my-btns { padding: 0.6rem 0.9rem; font-size: 0.9rem; } }
+@media screen and (max-width: 42em) { .my-btns { display: block; width: 100%; padding: 0.75rem; font-size: 0.9rem; }
+  .my-btns + .my-btns { margin-top: 1rem; margin-left: 0; } }

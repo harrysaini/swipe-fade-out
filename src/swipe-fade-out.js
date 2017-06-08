@@ -22,9 +22,9 @@
     this.internals.animationTime = options.animationTime || 500 ;
     this.animationTimeString = options.animationTime ? options.animationTime+'ms' : '500ms' ;
     this.afterSwipeOut = options.afterSwipeOut ;
-    this.opacityFadeScale = options.opacityFadeScale || 1.5 ; 
+    this.opacityFadeScale = options.opacityFadeScale || 1.2 ; 
     this.parentDiv = options.parentDiv || window ;
-    this.fadeOutThreshold = options.fadeOutThreshold || 50 ;
+    this.fadeOutThreshold = options.fadeOutThreshold || 40 ;
   }
 
 
