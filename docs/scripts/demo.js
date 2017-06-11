@@ -11,6 +11,18 @@
 
 	};
 
+	demo.handleRenderClick = function(){
+		demo.options.fadeOutThreshold = $('#fd-thres-input').val();
+		demo.options.animationTime = $('#animation-time-input').val();
+		demo.options.opacityFadeScale = $('#opacity-fade-input').val();
+
+		var code = $('#swipe-fade-input').val();
+		demo.options.afterSwipeOut = function(){
+			eval(code);
+		}
+
+		demo.addDivsForDemo(5);
+	}
 
 	demo.addDivsForDemo= function(length){
 		var divIds = demo.getDivIDs(length);
@@ -100,6 +112,13 @@
 	};
 
 	demo.addDivsForDemo(5);
+
+
+	$(document).ready(function(){
+		$('#render-btn').on('click' , function(){
+			demo.handleRenderClick();
+		})
+	})
 
 
 })();

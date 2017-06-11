@@ -52,11 +52,15 @@ nav ul a:hover {
 	top:0;
 }
 
+.nav-wrapper{
+	padding: 3px 15px;
+}
+
 .demo-div{
-	border: 1px solid #b3b3ff;
-	border-radius: 5px;
-	background: #f0f5f5;
+	border: 1px solid #d6f5f5;
+	background: #f6f6f6;
 	padding: 20px 5px 20px 5px;
+	min-height: 500px;
 }
 
 .demo-div .demo-div-content{
@@ -71,6 +75,7 @@ nav ul a:hover {
 }
 
 
+
 @media screen and (min-width: 720px){
 	.demo-content{
 		margin: auto;
@@ -78,6 +83,18 @@ nav ul a:hover {
 	}
 }
 
+
+
+@media screen and (max-width: 719px){
+	.demo-content .red-text{
+		margin: 5px 15px;
+	}
+
+	.demo-content .options-div
+	{
+		margin: 5px 15px;
+	}
+}
 
 
 .my-btns { display: inline-block; margin-bottom: 1rem; color: rgba(255, 255, 255, 0.7); background-color: rgba(255, 255, 255, 0.08); border-color: rgba(255, 255, 255, 0.2); border-style: solid; border-width: 1px; border-radius: 0.3rem; transition: color 0.2s, background-color 0.2s, border-color 0.2s; }
